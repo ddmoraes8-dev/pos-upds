@@ -16,8 +16,8 @@ public class ItemCardapio {
         this.categoria = categoria;
     }
 
-    double calculaPorcentagemDesconto(double preco, double precoComDesconto) {
-        return (preco - precoComDesconto) / preco;
+    double calculaPorcentagemDesconto() {
+        return (this.preco - this.precoComDesconto) / preco * 100;
     }
 
     String obtemNomeCategoria(int categoria) {
