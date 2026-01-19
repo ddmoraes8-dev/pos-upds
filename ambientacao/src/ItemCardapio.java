@@ -8,18 +8,43 @@ public class ItemCardapio {
     long id;
     int categoria;
 
-    ItemCardapio(String nome, String descricao, boolean emPromocao, double preco, double precoComDesconto, long id, int categoria) {
+    ItemCardapio(long id, String nome, String descricao, double preco, int categoria) {
         this.nome = nome;
         this.descricao = descricao;
-        this.emPromocao = emPromocao;
         this.preco = preco;
-        this.precoComDesconto = precoComDesconto;
         this.id = id;
         this.categoria = categoria;
     }
 
-
     double calculaPorcentagemDesconto(double preco, double precoComDesconto) {
         return (preco - precoComDesconto) / preco;
     }
+
+    String obtemNomeCategoria(int categoria) {
+        String nomeCategoria = "";
+        switch (categoria) {
+            case 1:
+                nomeCategoria = "Entradas";
+                break;
+            case 2:
+                nomeCategoria = "Pratos Principais";
+                break;
+            case 3:
+                nomeCategoria = "Sobremesas";
+                break;
+            case 4:
+                nomeCategoria = "Bebidas";
+                break;
+            default:
+                nomeCategoria = "Não encontrada...";
+                break;
+        }
+        return nomeCategoria;
+    }
+
+    void definePromocao(double precoComDesconto) {
+        this.emPromocao = true;
+        this.precoComDesconto = precoComDesconto;
+    }
+
 }
