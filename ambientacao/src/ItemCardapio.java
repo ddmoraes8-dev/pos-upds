@@ -1,50 +1,44 @@
-public class ItemCardapio {
+class ItemCardapio {
 
+    // atributos
+    long id;
     String nome;
     String descricao;
     boolean emPromocao;
     double preco;
     double precoComDesconto;
-    long id;
-    int categoria;
+    CategoriaCardapio categoria;
 
-    ItemCardapio(long id, String nome, String descricao, double preco, int categoria) {
+    //construtor
+    ItemCardapio(long id, String nome, String descricao, double preco, CategoriaCardapio categoria) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.id = id;
         this.categoria = categoria;
     }
 
+    //metodos
     double calculaPorcentagemDesconto() {
-        return (this.preco - this.precoComDesconto) / preco * 100;
+        return (preco - precoComDesconto) / preco * 100;
     }
 
-    String obtemNomeCategoria(int categoria) {
-        String nomeCategoria = "";
-        switch (categoria) {
-            case 1:
-                nomeCategoria = "Entradas";
-                break;
-            case 2:
-                nomeCategoria = "Pratos Principais";
-                break;
-            case 3:
-                nomeCategoria = "Sobremesas";
-                break;
-            case 4:
-                nomeCategoria = "Bebidas";
-                break;
-            default:
-                nomeCategoria = "Não encontrada...";
-                break;
-        }
-        return nomeCategoria;
+    CategoriaCardapio obtemNomeCategoria() {
+        return categoria;
     }
 
     void definePromocao(double precoComDesconto) {
-        this.emPromocao = true;
+        emPromocao = true;
         this.precoComDesconto = precoComDesconto;
+    }
+
+    double calculaImposto() {
+
+        if (this.emPromocao) {
+            return precoComDesconto * 0.1;
+        } else {
+            return preco * 0.1;
+        }
     }
 
 }
