@@ -8,6 +8,7 @@
          super(id, nome, descricao, preco, categoria);
      }
 
+     @Override
      double calculaImposto() {
          return 0.0;
      }
