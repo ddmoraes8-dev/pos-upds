@@ -1,8 +1,10 @@
-class Cardapio {
+package mx.florinda.modelo;
 
-    ItemCardapio[] itens;
+public class Cardapio {
 
-    Cardapio() {
+    public ItemCardapio[] itens;
+
+    public Cardapio() {
         ItemCardapio item1 = new ItemCardapio(1L, "Refresco do Chaves",
                 "Suco de limão que parece de tamarindo e tem gosto de groselha.", 2.99, CategoriaCardapio.BEBIDAS);
 
@@ -39,7 +41,7 @@ class Cardapio {
         itens[6] = item7;
     }
 
-    double obtemSomaDosPrecos() {
+    public double obtemSomaDosPrecos() {
         double totalDePrecos = 0.0;
         for (ItemCardapio item : itens) {
             totalDePrecos += item.preco;
@@ -47,7 +49,7 @@ class Cardapio {
         return totalDePrecos;
     }
 
-    int obtemTotalDeItensEmPromocao() {
+    public  int obtemTotalDeItensEmPromocao() {
         int totalItensEmPromocao = 0;
         for (ItemCardapio item : itens) {
             if (item.emPromocao) {
@@ -57,7 +59,7 @@ class Cardapio {
         return totalItensEmPromocao;
     }
 
-    double obtemPrimeiroPrecoMaiorQueLimite(double precoLimite) {
+    public double obtemPrimeiroPrecoMaiorQueLimite(double precoLimite) {
         double precoMaiorQueLimite = -1.0;
         for (ItemCardapio item : itens) {
             if (item.preco > precoLimite) {
