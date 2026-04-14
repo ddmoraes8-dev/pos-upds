@@ -8,39 +8,40 @@ void main() {
     String linha = IO.readln("Digite um id de um item de cardápio: ");
     long idSelecionado = Long.parseLong(linha);
 
-    ItemCardapio itemSelecionado = cardapio.itens[((int) idSelecionado) - 1];
+    ItemCardapio itemSelecionado = cardapio.getItemPorId(idSelecionado);
 
     IO.println("== Item do Cardápio ==");
-    IO.println("Id: " + itemSelecionado.id);
-    IO.println("Nome: " + itemSelecionado.nome);
-    IO.println("Descrição: " + itemSelecionado.descricao);
-    if (itemSelecionado.emPromocao) {
+    IO.println("Id: " + itemSelecionado.getId());
+    IO.println("Nome: " + itemSelecionado.getNome());
+    IO.println("Descrição: " + itemSelecionado.getDescricao());
+    if (itemSelecionado.isEmPromocao()) {
         IO.println("Item em promoção! 🤑");
         double porcentagemDesconto = itemSelecionado.calculaPorcentagemDesconto();
-        IO.println("Preco: de " + itemSelecionado.preco + " por " + itemSelecionado.precoComDesconto);
+        IO.println("Preco: de " + itemSelecionado.getPreco() + " por " + itemSelecionado.getPrecoComDesconto());
         IO.println("Porcentagem de desconto: " + porcentagemDesconto);
     } else {
-        IO.println("Preco: " + itemSelecionado.preco);
+        IO.println("Preco: " + itemSelecionado.getPreco());
         IO.println("Item não está em promoção");
     }
-    IO.println("Categoria: " + itemSelecionado.obtemNomeCategoria());
+    IO.println("Categoria: " + itemSelecionado.getCategoria());
     IO.println("Imposto: " + itemSelecionado.calculaImposto());
 
     IO.println("-------");
 
-    IO.println("Soma dos preços: " + cardapio.obtemSomaDosPrecos());
-    IO.println("Total de itens em promoção: " + cardapio.obtemTotalDeItensEmPromocao());
+    IO.println("Soma dos preços: " + cardapio.getSomaDosPrecos());
+    IO.println("Total de itens em promoção: " + cardapio.getTotalDeItensEmPromocao());
 
     double precoLimite = 10.0;
-    IO.println("O primeiro preço que é maior que " + precoLimite + ": " + cardapio.obtemPrimeiroPrecoMaiorQueLimite(precoLimite));
+    IO.println("O primeiro preço que é maior que " + precoLimite + ": " + cardapio.getPrimeiroPrecoMaiorQueLimite(precoLimite));
 
     IO.println("-------");
-
     // Imprimir todos os precos menores ou iguais ao limite
-    for (ItemCardapio item : cardapio.itens) {
-        if (item.preco <= precoLimite) {
-            IO.println("Preço menor que " + precoLimite + ": " + item.preco);
+    for (ItemCardapio item : cardapio.getItens()) {
+        if (item.getPreco() <= precoLimite) {
+            IO.println("Preço menor que " + precoLimite + ": " + item.getPreco());
         }
     }
+
+
 
 }

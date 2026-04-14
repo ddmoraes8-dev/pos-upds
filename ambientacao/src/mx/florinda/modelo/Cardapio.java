@@ -2,7 +2,7 @@ package mx.florinda.modelo;
 
 public class Cardapio {
 
-    public ItemCardapio[] itens;
+    private ItemCardapio[] itens;
 
     public Cardapio() {
         ItemCardapio item1 = new ItemCardapio(1L, "Refresco do Chaves",
@@ -10,23 +10,23 @@ public class Cardapio {
 
         ItemCardapio item2 = new ItemCardapio(2L, "Sanduíche de Presunto do Chaves",
                 "Sanduíche de presunto simples, mas feito com muito amor.", 3.50, CategoriaCardapio.PRATOS_PRINCIPAIS);
-        item2.definePromocao(2.99);
+        item2.setPromocao(2.99);
 
         ItemCardapio item3 = new ItemCardapio(3L, "Torta de Frango da Dona Florinda",
                 "Torta de frango com recheio cremoso e massa crocante.", 12.99, CategoriaCardapio.PRATOS_PRINCIPAIS);
-        item3.definePromocao(10.99);
+        item3.setPromocao(10.99);
 
         ItemCardapioIsento item4 = new ItemCardapioIsento(4L, "Pipoca do Quico",
                 "Balde de pipoca preparado com carinho pelo Quico.", 4.99, CategoriaCardapio.PRATOS_PRINCIPAIS);
-        item4.definePromocao(3.99);
+        item4.setPromocao(3.99);
 
         ItemCardapio item5 = new ItemCardapio(5L, "Água de Jamaica",
                 "Água aromatizada com hibisco e toque de açúcar.", 2.5, CategoriaCardapio.PRATOS_PRINCIPAIS);
-        item5.definePromocao(2.0);
+        item5.setPromocao(2.0);
 
         ItemCardapioIsento item6 = new ItemCardapioIsento(6L, "Churros do Chaves",
                 "Churros recheados com doce de leite, clássicos e irresistíveis.", 4.99, CategoriaCardapio.SOBREMESAS);
-        item6.definePromocao(3.99);
+        item6.setPromocao(3.99);
 
         ItemCardapioIsento item7 = new ItemCardapioIsento(7L, "Tacos de Carnitas",
                 "Tacos recheados com carne tenra", 25.9, CategoriaCardapio.PRATOS_PRINCIPAIS);
@@ -41,33 +41,41 @@ public class Cardapio {
         itens[6] = item7;
     }
 
-    public double obtemSomaDosPrecos() {
+    public double getSomaDosPrecos() {
         double totalDePrecos = 0.0;
         for (ItemCardapio item : itens) {
-            totalDePrecos += item.preco;
+            totalDePrecos += item.getPreco();
         }
         return totalDePrecos;
     }
 
-    public  int obtemTotalDeItensEmPromocao() {
+    public  int getTotalDeItensEmPromocao() {
         int totalItensEmPromocao = 0;
         for (ItemCardapio item : itens) {
-            if (item.emPromocao) {
+            if (item.isEmPromocao()) {
                 totalItensEmPromocao++;
             }
         }
         return totalItensEmPromocao;
     }
 
-    public double obtemPrimeiroPrecoMaiorQueLimite(double precoLimite) {
+    public double getPrimeiroPrecoMaiorQueLimite(double precoLimite) {
         double precoMaiorQueLimite = -1.0;
         for (ItemCardapio item : itens) {
-            if (item.preco > precoLimite) {
-                precoMaiorQueLimite = item.preco;
+            if (item.getPreco() > precoLimite) {
+                precoMaiorQueLimite = item.getPreco();
                 break;
             }
         }
         return precoMaiorQueLimite;
+    }
+
+    public ItemCardapio getItemPorId(long id) {
+        return itens[((int) id) - 1];
+    }
+
+    public ItemCardapio[] getItens(){
+        return itens;
     }
 
 }

@@ -3,13 +3,13 @@ package mx.florinda.modelo;
 public class ItemCardapio {
 
     // atributos
-    public long id;
-    public String nome;
-    public String descricao;
-    public boolean emPromocao;
-    public double preco;
-    public double precoComDesconto;
-    public CategoriaCardapio categoria;
+    private long id;
+    private String nome;
+    private String descricao;
+    private boolean emPromocao;
+    private double preco;
+    private double precoComDesconto;
+    private CategoriaCardapio categoria;
 
     //construtor
     ItemCardapio(long id, String nome, String descricao, double preco, CategoriaCardapio categoria) {
@@ -25,11 +25,7 @@ public class ItemCardapio {
         return (preco - precoComDesconto) / preco * 100;
     }
 
-    public CategoriaCardapio obtemNomeCategoria() {
-        return categoria;
-    }
-
-    public void definePromocao(double precoComDesconto) {
+    public void setPromocao(double precoComDesconto) {
         emPromocao = true;
         this.precoComDesconto = precoComDesconto;
     }
@@ -43,4 +39,32 @@ public class ItemCardapio {
         }
     }
 
+
+    public long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public boolean isEmPromocao() {
+        return emPromocao;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public double getPrecoComDesconto() {
+        return precoComDesconto;
+    }
+
+    public CategoriaCardapio getCategoria() {
+        return categoria;
+    }
 }
